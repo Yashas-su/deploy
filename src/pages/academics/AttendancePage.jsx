@@ -13,7 +13,7 @@ export default function AttendancePage() {
         const token = localStorage.getItem("token")
 
         const res = await fetch(
-          'http://localhost:3000/api/academic/attendence',
+          'https://deployement-nylv.onrender.com/api/academic/attendence',
           {
             method: 'GET',
             headers: {
