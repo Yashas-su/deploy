@@ -9,7 +9,7 @@
 
 import axios from 'axios'
 
-export const BASE_URL = 'http://localhost:3000/api' // ← change to your backend URL
+export const BASE_URL = 'https://deployement-nylv.onrender.com/api' // ← change to your backend URL
 
 const api = axios.create({ baseURL: BASE_URL })
 
