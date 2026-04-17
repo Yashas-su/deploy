@@ -28,7 +28,8 @@ const call = async (fn) => {
     const res = await fn()
     return { data: res.data, error: null }
   } catch (err) {
-    return { data: null, error: err?.response?.data?.message || 'Something went wrong' }
+    console.error("API error:", err) // ← ADD THIS
+    return { data: null, error: err?.response?.data?.message || err.message || 'Network error' }
   }
 }
 
