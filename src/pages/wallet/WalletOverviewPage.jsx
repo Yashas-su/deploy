@@ -42,7 +42,7 @@ export default function WalletOverviewPage() {
         const token = localStorage.getItem('token')
 
         // ✅ 1. GET USER (IMPORTANT)
-        const profileRes = await fetch('/api/profile/getme', {
+        const profileRes = await fetch('/profile/getme', {
           headers: { Authorization: `Bearer ${token}` }
         })
         const profileData = await profileRes.json()
@@ -51,7 +51,7 @@ export default function WalletOverviewPage() {
         setUserId(currentUserId)
 
         // ✅ 2. GET BALANCE
-        const balanceRes = await fetch('/api/wallet/balance', {
+        const balanceRes = await fetch('/wallet/balance', {
           headers: { Authorization: `Bearer ${token}` }
         })
         const balanceData = await balanceRes.json()
@@ -59,7 +59,7 @@ export default function WalletOverviewPage() {
         let balance = balanceData.balance || 0
 
         // ✅ 3. GET TRANSACTIONS
-        const txRes = await fetch('/api/transaction/history', {
+        const txRes = await fetch('/transaction/history', {
           headers: { Authorization: `Bearer ${token}` }
         })
         const txData = await txRes.json()
