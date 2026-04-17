@@ -9,9 +9,12 @@
 
 import axios from 'axios'
 
-export const BASE_URL = 'https://deployement-nylv.onrender.com/api' // ← change to your backend URL
+export const BASE_URL = import.meta.env.VITE_API_URL || 'https://deployement-nylv.onrender.com/api'
 
-const api = axios.create({ baseURL: BASE_URL })
+const api = axios.create({ 
+  baseURL: BASE_URL,
+  withCredentials: true  // ← ADD THIS for cookies to work
+})
 
 // Attach auth token from localStorage on every request
 api.interceptors.request.use((config) => {
