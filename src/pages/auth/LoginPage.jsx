@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, Eye, EyeOff, CreditCard, ArrowRight } from 'lucide-react'
 import { Input, Button } from '../../components/UI'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 export default function LoginPage() {
   const [show, setShow]   = useState(false)
   const [form, setForm]   = useState({ email: '', password: '' })
@@ -16,22 +18,18 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
     if (!form.email || !form.password) { setError('All fields are required'); return }
-
     setLoading(true)
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email, password: form.password }),
       })
-
       const data = await res.json()
-
       if (!res.ok) {
         setError(data.message || data.error || 'Invalid credentials')
         return
       }
-
       localStorage.setItem('token', data.token)
       navigate('/home')
     } catch (err) {
@@ -59,7 +57,6 @@ export default function LoginPage() {
               {error}
             </div>
           )}
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               label="Email / Roll Number"
@@ -69,7 +66,6 @@ export default function LoginPage() {
               value={form.email}
               onChange={set('email')}
             />
-
             <div>
               <label className="label">Password</label>
               <div className="relative">
