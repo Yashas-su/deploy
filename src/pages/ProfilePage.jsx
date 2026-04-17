@@ -17,7 +17,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch('/api/profile/getme', {
+        const res = await fetch('/profile/getme', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -49,7 +49,7 @@ export default function ProfilePage() {
     setSaving(true)
 
     try {
-      const res = await fetch('/api/profile/update', {
+      const res = await fetch('/profile/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
